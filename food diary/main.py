@@ -102,13 +102,11 @@ class FoodOptionsApp(App):
     def set_value_from_config(self):
         self.config.read(os.path.join(self.directory, '%(appname)s.ini'))
         self.user_data = ast.literal_eval(self.config.get(
-            'General', 'user_data'
-        ))
+            'General', 'user_data'))
 
     def get_application_config(self):
         return super(FoodOptionsApp, self).get_application_config(
-            '{}/%(appname)s.ini'.format(self.directory)
-        )
+            '{}/%(appname)s.ini'.format(self.directory))
 
     def build(self):
         return sm
