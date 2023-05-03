@@ -28,17 +28,17 @@ MDScreen:
     MDBoxLayout:
         orientation: 'vertical'
         spacing: '10dp'
-        
+
         MDTopAppBar:
             elevation: 10
             title: 'Класс MDCardSwipe'
-             
-            ScrollView:
-                scroll_timeout: 100
-                
-                MDList:
-                    id: md_list
-                    padding: 0
+
+        ScrollView:
+            scroll_timeout: 100
+
+            MDList:
+                id: md_list
+                padding: 0
 '''
 
 class SwipeToDeleteItem (MDCardSwipe): # класс создания карточки MDCardSwipe
@@ -48,15 +48,17 @@ class MainApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.screen = Builder.load_string(KV)
-        def build(self):
-            return self.screen
 
-        def on_start(self):
-            for i in range(15):
-                self.screen.ids.md_list.add_widget(SwipeToDeleteItem(
-                    text=f'Однострочный элемент - {i+1}'))
+    def build(self):
+        return self.screen
 
-        def press_button(self, button):
-            print('Нажата кнопка на скрытой панели')
+    def on_start(self):
+        for i in range(15):
+            self.screen.ids.md_list.add_widget(
+                SwipeToDeleteItem(
+                text=f'Однострочный элемент - {i+1}'))
+
+    def press_button(self, button):
+        print('Нажата кнопка на скрытой панели')
 
 MainApp().run()
